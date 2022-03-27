@@ -233,7 +233,13 @@ const get = async (req, res) => {
         if (user) {
             return res.json({
                 status: "ok",
-                ...user,
+                name: user.name,
+                username: user.username,
+                sex: user.sex,
+                email: user.email,
+                mobile: user.mobile,
+                address: user.address,
+                aadhar: user.aadhar,
             });
         } else {
             return res.json({ status: "error", error: "User not found" });
