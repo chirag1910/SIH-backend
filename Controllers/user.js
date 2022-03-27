@@ -26,7 +26,13 @@ const signup = async (req, res) => {
             return res.json({
                 status: "ok",
                 message: "User signed up successfully",
-                ...user,
+                name: user.name,
+                username: user.username,
+                sex: user.sex,
+                email: user.email,
+                mobile: user.mobile,
+                address: user.address,
+                aadhar: user.aadhar,
                 token,
             });
         } else {
@@ -61,7 +67,13 @@ const login = async (req, res) => {
             return res.json({
                 status: "ok",
                 message: "User logged in successfully",
-                ...user,
+                name: user.name,
+                username: user.username,
+                sex: user.sex,
+                email: user.email,
+                mobile: user.mobile,
+                address: user.address,
+                aadhar: user.aadhar,
                 token,
             });
         } else {
@@ -79,17 +91,15 @@ const login = async (req, res) => {
 };
 
 const update = async (req, res) => {
-    const { userID } = req.bdy;
+    const { userID } = req.body;
 
     try {
-        const user = await user.findById(userID);
-        user = await user.updateOne(req.body);
+        const user = await User.findById(userID);
+        await user.updateOne(req.body);
 
         return res.json({
             status: "ok",
             message: "User updated successfully",
-            ...user,
-            token,
         });
     } catch (error) {
         return res.json({ status: "error", error: "Some error occurred" });
