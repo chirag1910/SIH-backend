@@ -225,10 +225,10 @@ const logout = async (req, res) => {
     return res.json({ status: "ok", message: "Logged out successfully" });
 };
 
-const getUser = async (req, res) => {
-    const { userID } = req.body;
+const get = async (req, res) => {
+    const { userID: _id } = req.body;
     try {
-        const user = await User.findById(userID);
+        const user = await User.findOne({ _id });
 
         if (user) {
             return res.json({
@@ -259,6 +259,6 @@ module.exports = {
     sendOtp,
     resetPassword,
     logout,
-    getUser,
+    get,
     getAll,
 };

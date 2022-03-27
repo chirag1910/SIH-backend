@@ -20,7 +20,7 @@ const {
     sendOtp,
     resetPassword,
     logout,
-    getUser,
+    get,
     getAll,
 } = require("../Controllers/user");
 
@@ -31,7 +31,7 @@ router.post("/update/password", auth, changePasswordValidator, changePassword);
 router.post("/reset", sendOtpValidator, sendOtp);
 router.post("/reset/password", resetPasswordValidator, resetPassword);
 router.post("/logout", auth, logout);
-router.post("/", auth, getUser);
+router.post("/", auth, get);
 router.post("/all", admin, getAll);
 
 module.exports = router;
