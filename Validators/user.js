@@ -16,7 +16,7 @@ const signupValidator = (req, res, next) => {
             error: "Password must be minimum 8 characters long",
         });
     }
-    if (sex != "Male" || sex != "Female" || sex != "Other") {
+    if (sex != "Male" && sex != "Female" && sex != "Other") {
         return res.json({
             status: "error",
             error: "Invalid sex type",
