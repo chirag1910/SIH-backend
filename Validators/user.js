@@ -82,7 +82,7 @@ const changePasswordValidator = (req, res, next) => {
 const sendOtpValidator = (req, res, next) => {
     const { username } = req.body;
 
-    if (!username || typeof username === "string") {
+    if (!username || typeof username !== "string") {
         return res.json({ status: "error", error: "Username is required" });
     }
     next();
