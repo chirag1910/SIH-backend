@@ -8,6 +8,7 @@ const {
     updateValidator,
     deleteValidator,
     getValidator,
+    getAllValidator,
 } = require("../Validators/scheme");
 
 const {
@@ -22,6 +23,6 @@ router.post("/add", admin, addValidator, add);
 router.post("/update", admin, updateValidator, update);
 router.post("/delete", admin, deleteValidator, deleteScheme);
 router.post("/", auth, getValidator, get);
-router.post("/all", auth, getAll);
+router.post("/all", auth, getAllValidator, getAll);
 
 module.exports = router;

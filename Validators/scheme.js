@@ -100,9 +100,30 @@ const getValidator = (req, res, next) => {
     next();
 };
 
+const getAllValidator = (req, res, next) => {
+    const { category } = req.body;
+
+    if (
+        category &&
+        category != "general" &&
+        category != "women" &&
+        category != "student" &&
+        category != "pc" &&
+        category != "farmer"
+    ) {
+        return res.json({
+            status: "error",
+            error: "Invalid category type. Valid values: general, women, student, pc, farmer",
+        });
+    }
+
+    next();
+};
+
 module.exports = {
     addValidator,
     updateValidator,
     deleteValidator,
     getValidator,
+    getAllValidator,
 };
