@@ -37,7 +37,7 @@ const addValidator = (req, res, next) => {
     if (!link) {
         return res.json({
             status: "error",
-            error: "Invalid category type. Valid values: general, women, student, pc, farmer",
+            error: "Scheme's info link is required",
         });
     }
     next();
