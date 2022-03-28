@@ -16,10 +16,10 @@ const signupValidator = (req, res, next) => {
             error: "Password must be minimum 8 characters long",
         });
     }
-    if (sex != "Male" && sex != "Female" && sex != "Other") {
+    if (sex != "male" && sex != "female" && sex != "other") {
         return res.json({
             status: "error",
-            error: "Invalid sex type",
+            error: "Invalid sex type. Valid values: male, female, other",
         });
     }
     if (!mobile) {
@@ -53,19 +53,19 @@ const loginValidator = (req, res, next) => {
 };
 
 const updateValidator = (req, res, next) => {
-    const {username, password, sex, mobile, aadhar } = req.body;
-    
-    if (sex && (sex != "Male" && sex != "Female" && sex != "Other")){
+    const { username, password, sex, mobile, aadhar } = req.body;
+
+    if (sex && sex != "male" && sex != "female" && sex != "other") {
         return res.json({
             status: "error",
-            error: "Invalid sex type",
+            error: "Invalid sex type. Valid values: male, female, other",
         });
     }
-    
+
     if (mobile && !mobile.match(/^\d{10}$/)) {
         return res.json({ status: "error", error: "Invalid mobiile number" });
     }
-   
+
     if (aadhar && !aadhar.match(/^\d{12}$/)) {
         return res.json({ status: "error", error: "Invalid aadhar number" });
     }
