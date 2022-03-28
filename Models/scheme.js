@@ -16,11 +16,9 @@ const schemeSchema = new mongoose.Schema({
     },
     minIncome: {
         type: Number,
-        default: -1,
     },
     maxIncome: {
         type: Number,
-        default: -1,
     },
     mode: {
         type: String,
