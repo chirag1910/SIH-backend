@@ -53,8 +53,26 @@ const loginValidator = (req, res, next) => {
 };
 
 const updateValidator = (req, res, next) => {
-    const { password } = req.body;
+    const {username, password, sex, mobile, aadhar } = req.body;
+    
+    if (sex && (sex != "Male" && sex != "Female" && sex != "Other")){
+        return res.json({
+            status: "error",
+            error: "Invalid sex type",
+        });
+    }
+    
+    if (mobile && !mobile.match(/^\d{10}$/)) {
+        return res.json({ status: "error", error: "Invalid mobiile number" });
+    }
+   
+    if (aadhar && !aadhar.match(/^\d{12}$/)) {
+        return res.json({ status: "error", error: "Invalid aadhar number" });
+    }
 
+    if (username) {
+        delete req.body.username;
+    }
     if (password) {
         delete req.body.password;
     }
