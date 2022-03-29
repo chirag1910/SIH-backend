@@ -16,23 +16,14 @@ const signupValidator = (req, res, next) => {
             error: "Password must be minimum 8 characters long",
         });
     }
-    if (sex != "male" && sex != "female" && sex != "other") {
+    if (sex && sex != "male" && sex != "female" && sex != "other") {
         return res.json({
             status: "error",
             error: "Invalid sex type. Valid values: male, female, other",
         });
     }
-    if (!mobile) {
-        return res.json({
-            status: "error",
-            error: "Mobile number is required",
-        });
-    }
-    if (!mobile.match(/^\d{10}$/)) {
+    if (mobile && !mobile.match(/^\d{10}$/)) {
         return res.json({ status: "error", error: "Invalid mobiile number" });
-    }
-    if (!address) {
-        return res.json({ status: "error", error: "Address is required" });
     }
     if (aadhar && !aadhar.match(/^\d{12}$/)) {
         return res.json({ status: "error", error: "Invalid aadhar number" });

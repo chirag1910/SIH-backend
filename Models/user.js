@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema(
         },
         sex: {
             type: String,
-            required: true,
             enum: ["male", "female", "other"],
         },
         email: {
@@ -25,7 +24,6 @@ const userSchema = new mongoose.Schema(
         },
         mobile: {
             type: Number,
-            required: true,
         },
         address: {
             type: String,
