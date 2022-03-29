@@ -15,6 +15,7 @@ const add = async (req, res) => {
             maxIncome: scheme.maxIncome,
             mode: scheme.mode,
             list: scheme.list,
+            state: scheme.state,
         });
     } catch (error) {
         return res.json({
@@ -89,6 +90,7 @@ const get = async (req, res) => {
                 maxIncome: scheme.maxIncome,
                 mode: scheme.mode,
                 list: scheme.list,
+                state: scheme.state,
             });
         } else {
             return res.json({ status: "error", error: "Scheme not found" });
@@ -102,13 +104,17 @@ const get = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { category } = req.body;
+    const { category, state } = req.body;
 
     try {
         var schemes = [];
 
-        if (category) {
+        if (category && state) {
+            schemes = await Scheme.find({ category, state });
+        } else if (category) {
             schemes = await Scheme.find({ category });
+        } else if (state) {
+            schemes = await Scheme.find({ state });
         } else {
             schemes = await Scheme.find({});
         }

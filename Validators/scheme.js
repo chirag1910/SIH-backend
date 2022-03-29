@@ -1,5 +1,5 @@
 const addValidator = (req, res, next) => {
-    const { title, description, category, mode, link } = req.body;
+    const { title, description, category, mode, link, state } = req.body;
 
     if (!title) {
         return res.json({ status: "error", error: "Title is required" });
@@ -38,6 +38,12 @@ const addValidator = (req, res, next) => {
         return res.json({
             status: "error",
             error: "Scheme's info link is required",
+        });
+    }
+    if (!state) {
+        return res.json({
+            status: "error",
+            error: "State is required. Valid values: central or state name",
         });
     }
     next();
